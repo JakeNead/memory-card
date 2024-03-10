@@ -33,10 +33,23 @@ export default function Main() {
     updatePicArray();
   }, []);
 
+  function handleClick() {
+    setPicArray(shuffleArray(picArray));
+  }
+
+  const shuffleArray = (arr) => {
+    const a = [...arr];
+    for (let i = 0; i < a.length; i++) {
+      let j = Math.floor(Math.random() * i);
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+
   return (
     <main>
       <div className="cardContainer">
-        <Cards picArray={picArray} />
+        <Cards picArray={picArray} handleClick={handleClick} />
       </div>
     </main>
   );
