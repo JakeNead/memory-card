@@ -35,3 +35,36 @@ h6 {
   overflow-wrap: break-word;
 }
 /* -------- Reset Above -------- */
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(300, 3%, 6%);
+  color: hsl(300, 28%, 93%);
+  --card-size: 250px;
+}
+Header {
+  padding: 0.5rem 1rem;
+}
+main {
+  flex-grow: 1;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template: 1fr 1fr 1fr auto/1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.card {
+  height: var(--card-size);
+  width: var(--card-size);
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
