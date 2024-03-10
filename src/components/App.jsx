@@ -1,16 +1,11 @@
 import { useState } from "react";
-export default App;
-
-function App() {
-  const [count, setCount] = useState(0);
-
+import Header from "./Header";
+import Main from "./Main";
+export default function App() {
   return (
     <>
-      <h1>Memory Game</h1>
-      <span>
-        Get points by clicking on images, but don&apos;t click the same one
-        twice! See if you can get all 12!
-      </span>
+      <Header />
+      <Main />
     </>
   );
 }
@@ -20,11 +15,12 @@ function App() {
 // useEffect in main for downloading images
 //    updates the images container
 //    updates the availableCardsArray
-//    returns cleanup to empty images container an availableCardsArray
+//    returns cleanup to empty images container and availableCardsArray
 //    empty dependency array to run once on mount
 
 // handleOnClick will
 //    if pic is in availableCardsArray
 //        pop that card from the array
-//        check current/best score state to update
+//        current +=1
+//        if current>best score state, update best
 //    shuffle the images conainer
