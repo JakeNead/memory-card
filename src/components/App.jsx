@@ -35,8 +35,29 @@ export default function App() {
 
   function handleClick(e) {
     setPicArray(shuffleArray(picArray));
-    updateScore(e);
-    updateBest();
+    if (availableCards.length === 0) {
+      resetAvailableCards();
+      setCurrentScore(0);
+    }
+    if (cardAvailable(e)) {
+      updateScore();
+      updateBest();
+      setAvailableCards(
+        availableCards.filter((id) => id !== e.currentTarget.dataset.key)
+      );
+    } else {
+      setCurrentScore(0);
+      resetAvailableCards();
+    }
+  }
+
+  function resetAvailableCards() {
+    setAvailableCards(picArray.map((i) => i.id));
+  }
+
+  function cardAvailable(e) {
+    const key = e.currentTarget.dataset.key;
+    return availableCards.includes(key);
   }
 
   function shuffleArray(arr) {
@@ -48,15 +69,12 @@ export default function App() {
     return a;
   }
 
-  function updateScore(e) {
-    const key = e.target.key;
-    if (availableCards.includes(key)) {
-      setCurrentScore(currentScore + 1);
-    }
+  function updateScore() {
+    setCurrentScore(currentScore + 1);
   }
 
   function updateBest() {
-    if (currentScore - bestScore >= 0) {
+    if (currentScore === bestScore) {
       setBestScore(bestScore + 1);
     }
   }
