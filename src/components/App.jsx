@@ -9,30 +9,45 @@ export default function App() {
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
-  const getData = () => mockPicArray();
-  //   fetch(
-  //     `https://api.unsplash.com/photos/random/?client_id=ilZSWZPGk4_RCtBf634WmDEcGio2Iy2No4CHPnt28EE
-  // `,
-  //     { mode: "cors" }
-  //   ).then((resolve) => {
-  //     return resolve.json();
-  //   });
+  // mock api version below-----------------------------
 
-  const updatePicArray = () => {
-    const newPicArray = [];
-    return Promise.all(
-      picArray.map((a, i) => {
-        return getData()[i];
-      })
+  // const getData = () => mockPicArray();
+
+  // const updatePicArray = () => {
+  //   const newPicArray = [];
+  //   return Promise.all(
+  //     picArray.map((a, i) => {
+  //       return getData()[i];
+  //     })
+  //   ).then((resolve) => {
+  //     resolve.map((item) => {
+  //       newPicArray.push(item);
+  //     });
+  //     setPicArray(newPicArray);
+  //     setAvailableCards(newPicArray.map((i) => i.id));
+  //   });
+  // };
+
+  // mock api version above-----------------------------
+
+  // live version below---------------------------------
+
+  const getData = () =>
+    fetch(
+      `https://api.unsplash.com/photos/random/?client_id=ilZSWZPGk4_RCtBf634WmDEcGio2Iy2No4CHPnt28EE&count=12
+  `,
+      { mode: "cors" }
     ).then((resolve) => {
-      resolve.map((item) => {
-        newPicArray.push(item);
-      });
-      setPicArray(newPicArray);
-      setAvailableCards(newPicArray.map((i) => i.id));
+      return resolve.json();
     });
+
+  const updatePicArray = async () => {
+    const data = await getData();
+    setPicArray(data);
+    setAvailableCards(data.map((i) => i.id));
   };
 
+  // live version above---------------------------------
   function handleClick(e) {
     setPicArray(shuffleArray(picArray));
     if (availableCards.length === 0) {
