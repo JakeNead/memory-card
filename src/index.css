@@ -100,7 +100,10 @@ img {
     padding: 0.5rem;
   }
   header {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
+  }
+  .headerContainer .left {
+    max-width: 290px;
   }
   .cardContainer {
     grid-template: repeat(4, 1fr) / repeat(3, 1fr);
