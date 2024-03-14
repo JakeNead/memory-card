@@ -37,34 +37,72 @@ h6 {
 /* -------- Reset Above -------- */
 
 #root {
-  min-height: 100vh;
+  height: 100vh;
+
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: hsl(300, 3%, 6%);
   color: hsl(300, 28%, 93%);
-  --card-size: 250px;
+  --card-size: 220px;
 }
 Header {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+.headerContainer {
+  max-width: 976px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+header.left {
+}
+.headerContainer .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: end;
+  min-width: 125px;
 }
 main {
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
 }
 
 .cardContainer {
   display: grid;
-  grid-template: 1fr 1fr 1fr auto/1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  padding: 2rem;
+  grid-template: repeat(3, 1fr) / repeat(4, 1fr);
+  gap: 2%;
+  max-width: 1000px;
+  padding-bottom: 100%;
 }
 
 .card {
-  height: var(--card-size);
-  width: var(--card-size);
+  aspect-ratio: 1/1;
+}
+
+.card:active {
+  transform: scale(95%);
 }
 
 img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 663px) {
+  main {
+    padding: 0.5rem;
+  }
+  header {
+    padding: 0.5rem 1rem;
+  }
+  .cardContainer {
+    grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+  }
 }
