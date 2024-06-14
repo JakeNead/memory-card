@@ -48,6 +48,7 @@ export default function App() {
   };
 
   // live version above---------------------------------
+
   function handleClick(e) {
     setPicArray(shuffleArray(picArray));
     if (availableCards.length === 0) {
@@ -106,18 +107,3 @@ export default function App() {
     </>
   );
 }
-
-// set up header, main, footer components
-
-// useEffect in main for downloading images
-//    updates the images container
-//    updates the availableCardsArray
-//    returns cleanup to empty images container and availableCardsArray
-//    empty dependency array to run once on mount
-
-// handleOnClick will
-//    if pic is in availableCardsArray
-//        pop that card from the array
-//        current +=1
-//        if current>best score state, update best
-//    shuffle the images conainer
